@@ -2,12 +2,15 @@ import { Hero } from "@/components/Hero";
 import { Pill } from "@/components/Pill";
 import Icon from "@/components/ui/icon";
 
+const AVATAR = "https://cdn.poehali.dev/projects/f7eecd3c-efef-4990-bd6c-36031573c509/bucket/10a2c391-1584-486d-b9f5-e5dbe7ed6d21.jpeg";
+
 const players = [
-  { nick: "SHADOW_X", role: "Снайпер", country: "RU", rating: "1.34" },
-  { nick: "PHANTOM", role: "Entry Fragger", country: "RU", rating: "1.21" },
-  { nick: "VORTEX", role: "IGL", country: "RU", rating: "1.18" },
-  { nick: "BLADE", role: "Support", country: "RU", rating: "1.15" },
-  { nick: "GHOST", role: "Lurker", country: "RU", rating: "1.09" },
+  { nick: "xinto666", role: "Star Player", reserve: false },
+  { nick: "xleb666", role: "AWP", reserve: false },
+  { nick: "duwick", role: "Entry Fragger", reserve: false },
+  { nick: "mef0mu", role: "Support", reserve: false },
+  { nick: "laky", role: "Opornik B", reserve: false },
+  { nick: "kyllize", role: "Entry Fragger", reserve: true },
 ];
 
 const news = [
@@ -20,8 +23,8 @@ const news = [
   {
     date: "20 FEB 2026",
     tag: "Состав",
-    title: "GHOST присоединяется к SANCE TEAM",
-    text: "Профессиональный лёркер с трёхлетним опытом выступлений усиливает состав клана перед предстоящим сезоном.",
+    title: "kyllize присоединяется к SANCE TEAM",
+    text: "Опытный entry fragger усиливает запас клана перед предстоящим сезоном турниров.",
   },
   {
     date: "10 FEB 2026",
@@ -73,6 +76,9 @@ const matches = [
 ];
 
 export default function Index() {
+  const mainPlayers = players.filter((p) => !p.reserve);
+  const reservePlayers = players.filter((p) => p.reserve);
+
   return (
     <>
       <Hero />
@@ -86,26 +92,45 @@ export default function Index() {
               Состав <i className="font-light">клана</i>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {players.map((p) => (
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+            {mainPlayers.map((p) => (
               <div
                 key={p.nick}
                 className="border border-border/40 p-6 hover:border-primary/60 transition-colors duration-300 group"
               >
-                <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mb-4 mx-auto group-hover:bg-primary/20 transition-colors duration-300">
-                  <Icon name="User" size={28} className="text-foreground/40 group-hover:text-primary transition-colors duration-300" />
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 mx-auto border-2 border-border/40 group-hover:border-primary/60 transition-colors duration-300">
+                  <img src={AVATAR} alt={p.nick} className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="text-center">
-                  <p className="font-mono font-bold text-primary text-lg">{p.nick}</p>
+                  <p className="font-mono font-bold text-primary">{p.nick}</p>
                   <p className="font-mono text-xs text-foreground/50 uppercase mt-1">{p.role}</p>
-                  <div className="mt-4 pt-4 border-t border-border/30 flex justify-between items-center">
-                    <span className="font-mono text-xs text-foreground/40">Rating</span>
-                    <span className="font-mono text-sm text-foreground/90">{p.rating}</span>
-                  </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {reservePlayers.length > 0 && (
+            <div>
+              <p className="font-mono text-xs text-foreground/40 uppercase mb-4 text-center">Запас</p>
+              <div className="flex justify-center gap-4">
+                {reservePlayers.map((p) => (
+                  <div
+                    key={p.nick}
+                    className="border border-border/20 p-5 hover:border-primary/40 transition-colors duration-300 group w-40"
+                  >
+                    <div className="w-14 h-14 rounded-full overflow-hidden mb-3 mx-auto border border-border/30 group-hover:border-primary/40 transition-colors duration-300 opacity-60 group-hover:opacity-90">
+                      <img src={AVATAR} alt={p.nick} className="w-full h-full object-cover object-top" />
+                    </div>
+                    <div className="text-center">
+                      <p className="font-mono font-bold text-foreground/60 text-sm group-hover:text-primary transition-colors">{p.nick}</p>
+                      <p className="font-mono text-xs text-foreground/30 uppercase mt-1">{p.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
