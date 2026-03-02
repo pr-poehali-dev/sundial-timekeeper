@@ -5,14 +5,21 @@ import Icon from "@/components/ui/icon";
 const AVATAR = "https://cdn.poehali.dev/projects/f7eecd3c-efef-4990-bd6c-36031573c509/bucket/10a2c391-1584-486d-b9f5-e5dbe7ed6d21.jpeg";
 
 const players = [
-  { nick: "xinto666", role: "Star Player", reserve: false },
-  { nick: "xleb666", role: "AWP", reserve: false },
-  { nick: "duwick", role: "Entry Fragger", reserve: false },
-  { nick: "mef0mu", role: "Support", reserve: false },
-  { nick: "laky", role: "Opornik B", reserve: false },
-  { nick: "kyllize", role: "Entry Fragger", reserve: true },
-  { nick: "floss", role: "Entry Fragger", reserve: true },
+  { nick: "xinto666", role: "Star Player", reserve: false, faceit: 10 },
+  { nick: "xleb666", role: "AWP", reserve: false, faceit: 8 },
+  { nick: "duwick", role: "Entry Fragger", reserve: false, faceit: null },
+  { nick: "mef0mu", role: "Support", reserve: false, faceit: 5 },
+  { nick: "laky", role: "Opornik B", reserve: false, faceit: 4 },
+  { nick: "kyllize", role: "Entry Fragger", reserve: true, faceit: 10 },
+  { nick: "floss", role: "Entry Fragger", reserve: true, faceit: 4 },
 ];
+
+function faceitColor(lvl: number) {
+  if (lvl >= 10) return "text-red-500";
+  if (lvl >= 7) return "text-orange-400";
+  if (lvl >= 5) return "text-yellow-400";
+  return "text-foreground/50";
+}
 
 const news = [
   {
@@ -109,6 +116,12 @@ export default function Index() {
                 <div className="text-center">
                   <p className="font-mono font-bold text-primary">{p.nick}</p>
                   <p className="font-mono text-xs text-foreground/50 uppercase mt-1">{p.role}</p>
+                  {p.faceit !== null && (
+                    <div className="mt-3 pt-3 border-t border-border/20 flex items-center justify-center gap-1.5">
+                      <span className="font-mono text-xs text-foreground/30">FACEIT</span>
+                      <span className={`font-mono text-xs font-bold ${faceitColor(p.faceit!)}`}>LVL {p.faceit}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -129,6 +142,12 @@ export default function Index() {
                     <div className="text-center">
                       <p className="font-mono font-bold text-foreground/60 text-sm group-hover:text-primary transition-colors">{p.nick}</p>
                       <p className="font-mono text-xs text-foreground/30 uppercase mt-1">{p.role}</p>
+                      {p.faceit !== null && (
+                        <div className="mt-2 pt-2 border-t border-border/20 flex items-center justify-center gap-1">
+                          <span className="font-mono text-xs text-foreground/20">FACEIT</span>
+                          <span className={`font-mono text-xs font-bold ${faceitColor(p.faceit!)}`}>LVL {p.faceit}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -168,6 +187,9 @@ export default function Index() {
                     rel="noopener noreferrer"
                     className="mt-6 flex items-center gap-2 text-primary/60 group-hover:text-primary transition-colors duration-300"
                   >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.203-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+                    </svg>
                     <span className="font-mono text-xs uppercase">Перейти в Telegram</span>
                     <Icon name="ArrowRight" size={14} />
                   </a>
@@ -222,6 +244,23 @@ export default function Index() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ACHIEVEMENTS */}
+      <section id="achievements" className="relative z-10 py-24 md:py-32 border-t border-border/20">
+        <div className="container">
+          <div className="text-center mb-16">
+            <Pill className="mb-6">Клан</Pill>
+            <h2 className="text-4xl md:text-5xl font-sentient">
+              Достижения <i className="font-light">команды</i>
+            </h2>
+          </div>
+          <div className="flex flex-col items-center justify-center py-20 border border-border/20">
+            <Icon name="Trophy" size={48} className="text-foreground/20 mb-6" />
+            <p className="font-mono text-foreground/30 uppercase text-sm tracking-widest">Достижений пока нет</p>
+            <p className="font-mono text-foreground/20 text-xs mt-2">Мы только начинаем — скоро здесь будут трофеи</p>
           </div>
         </div>
       </section>

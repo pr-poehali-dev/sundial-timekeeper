@@ -14,6 +14,7 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
     { name: "Состав", href: "#roster" },
     { name: "Новости", href: "#news" },
     { name: "Матчи", href: "#matches" },
+    { name: "Достижения", href: "#achievements" },
   ];
 
   const handleLinkClick = () => {
