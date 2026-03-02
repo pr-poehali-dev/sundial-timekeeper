@@ -20,25 +20,28 @@ const news = [
     tag: "Состав",
     title: "Официальный состав SANCE TEAM сформирован",
     text: "В наш состав переходят mef0mu, xinto, xleb, duwick, laky, floss и kyllize. Команда в полной боевой готовности к предстоящему сезону.",
+    link: null,
   },
   {
     date: "25 FEB 2026",
     tag: "Турнир",
     title: "Выступаем на StarLadder",
     text: "Наш предстоящий турнир — StarLadder. Мы покажем оппонентам настоящее соперничество и попробуем пройти в финал.",
+    link: null,
   },
   {
-    date: "10 FEB 2026",
-    tag: "Цель",
-    title: "Путь в ESEA League начинается",
-    text: "Главная цель сезона — квалификация в ESEA League и выступление на профессиональных киберспортивных матчах.",
+    date: "02 MAR 2026",
+    tag: "Соцсети",
+    title: "Мы в Telegram — подписывайтесь!",
+    text: "Следите за новостями клана, анонсами матчей и результатами в нашем официальном Telegram-канале SANCE TEAM.",
+    link: "https://t.me/sanceteam",
   },
 ];
 
 const matches = [
   {
     date: "20 MAR 2026",
-    opponent: "TBD",
+    opponent: "SANCE TEAM vs TBD",
     event: "StarLadder",
     map: "TBD",
     status: "upcoming",
@@ -158,10 +161,22 @@ export default function Index() {
                   {n.title}
                 </h3>
                 <p className="font-mono text-sm text-foreground/50 leading-relaxed">{n.text}</p>
-                <div className="mt-6 flex items-center gap-2 text-primary/60 group-hover:text-primary transition-colors duration-300">
-                  <span className="font-mono text-xs uppercase">Читать</span>
-                  <Icon name="ArrowRight" size={14} />
-                </div>
+                {n.link ? (
+                  <a
+                    href={n.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 flex items-center gap-2 text-primary/60 group-hover:text-primary transition-colors duration-300"
+                  >
+                    <span className="font-mono text-xs uppercase">Перейти в Telegram</span>
+                    <Icon name="ArrowRight" size={14} />
+                  </a>
+                ) : (
+                  <div className="mt-6 flex items-center gap-2 text-primary/60 group-hover:text-primary transition-colors duration-300">
+                    <span className="font-mono text-xs uppercase">Читать</span>
+                    <Icon name="ArrowRight" size={14} />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -186,7 +201,7 @@ export default function Index() {
                 <div className="flex items-center gap-6">
                   <span className="font-mono text-xs text-foreground/40 w-24 shrink-0">{m.date}</span>
                   <div>
-                    <p className="font-mono font-bold text-foreground uppercase">vs {m.opponent}</p>
+                    <p className="font-mono font-bold text-foreground uppercase">{m.opponent.startsWith("SANCE") ? m.opponent : `vs ${m.opponent}`}</p>
                     <p className="font-mono text-xs text-foreground/40 mt-0.5">{m.event} · {m.map}</p>
                   </div>
                 </div>
