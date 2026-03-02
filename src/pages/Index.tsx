@@ -11,41 +11,42 @@ const players = [
   { nick: "mef0mu", role: "Support", reserve: false },
   { nick: "laky", role: "Opornik B", reserve: false },
   { nick: "kyllize", role: "Entry Fragger", reserve: true },
+  { nick: "floss", role: "Entry Fragger", reserve: true },
 ];
 
 const news = [
   {
-    date: "28 FEB 2026",
-    tag: "Результат",
-    title: "SANCE TEAM побеждает на ESL Pro League Qualifier",
-    text: "Команда прошла квалификацию и завоевала путёвку на основной турнир ESL с результатом 16:9 в финальном матче.",
+    date: "01 MAR 2026",
+    tag: "Состав",
+    title: "Официальный состав SANCE TEAM сформирован",
+    text: "В наш состав переходят mef0mu, xinto, xleb, duwick, laky, floss и kyllize. Команда в полной боевой готовности к предстоящему сезону.",
   },
   {
-    date: "20 FEB 2026",
-    tag: "Состав",
-    title: "kyllize присоединяется к SANCE TEAM",
-    text: "Опытный entry fragger усиливает запас клана перед предстоящим сезоном турниров.",
+    date: "25 FEB 2026",
+    tag: "Турнир",
+    title: "Выступаем на StarLadder",
+    text: "Наш предстоящий турнир — StarLadder. Мы покажем оппонентам настоящее соперничество и попробуем пройти в финал.",
   },
   {
     date: "10 FEB 2026",
-    tag: "Тренировки",
-    title: "Новый тренировочный блок: ежедневные scrimmage",
-    text: "Клан объявляет о переходе на профессиональный тренировочный режим с ежедневными контрольными матчами.",
+    tag: "Цель",
+    title: "Путь в ESEA League начинается",
+    text: "Главная цель сезона — квалификация в ESEA League и выступление на профессиональных киберспортивных матчах.",
   },
 ];
 
 const matches = [
   {
-    date: "05 MAR 2026",
-    opponent: "STORM CLAN",
-    event: "ESL Pro League",
-    map: "Mirage",
+    date: "20 MAR 2026",
+    opponent: "TBD",
+    event: "StarLadder",
+    map: "TBD",
     status: "upcoming",
   },
   {
-    date: "12 MAR 2026",
+    date: "05 MAR 2026",
     opponent: "NOVA SQUAD",
-    event: "FACEIT Major Qualifier",
+    event: "ESEA Qualifier",
     map: "Inferno",
     status: "upcoming",
   },
@@ -113,7 +114,7 @@ export default function Index() {
           {reservePlayers.length > 0 && (
             <div>
               <p className="font-mono text-xs text-foreground/40 uppercase mb-4 text-center">Запас</p>
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-4 flex-wrap">
                 {reservePlayers.map((p) => (
                   <div
                     key={p.nick}
